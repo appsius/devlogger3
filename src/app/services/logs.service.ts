@@ -28,7 +28,7 @@ export class LogsService {
         date: new Date("11/22/2010 03:33:42"),
       },
       {
-        id: "1",
+        id: "3",
         text: "Update common frameworks",
         date: new Date("12/23/2020 12:22:42"),
       },
@@ -41,5 +41,26 @@ export class LogsService {
 
   setLogForm(log: Log) {
     this.logSource.next(log);
+  }
+
+  addLog(log: Log) {
+    this.logs.unshift(log);
+  }
+
+  updateLog(log: Log) {
+    this.logs.forEach((cur, index) => {
+      if (log.id === cur.id) {
+        this.logs.splice(index, 1);
+      }
+    });
+    this.logs.unshift(log);
+  }
+
+  deleteLog(log: Log) {
+    this.logs.forEach((cur, index) => {
+      if (log.id === cur.id) {
+        this.logs.splice(index, 1);
+      }
+    });
   }
 }
